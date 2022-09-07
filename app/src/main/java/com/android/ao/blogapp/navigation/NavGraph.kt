@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.android.ao.blogapp.common.Constants
+import com.android.ao.blogapp.presentation.splash.SplashScreen
 import com.android.ao.blogapp.presentation.users_detail.UsersDetailScreen
 import com.android.ao.blogapp.presentation.users_list.UsersListScreen
 import com.android.ao.blogapp.presentation.users_list.UsersListViewModel
@@ -18,8 +19,19 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.UsersListScreen.route,
+        startDestination = Screen.SplashScreen.route,
     ) {
+        composable(
+            route = Screen.SplashScreen.route
+        ) {
+            SplashScreen {
+                navController.navigate(Screen.UsersListScreen.route) {
+                    popUpTo(Screen.SplashScreen.route) {
+                        inclusive = true
+                    }
+                }
+            }
+        }
         composable(
             route = Screen.UsersListScreen.route
         ) {

@@ -9,7 +9,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetPostsWithUsersUseCase @Inject constructor(
+class GetUsersWithPostsUseCase @Inject constructor(
     private val blogRepository: BlogRepository,
     private val createUsersWithPostsUseCase: CreateUsersWithPostsUseCase
 ){
@@ -18,7 +18,8 @@ class GetPostsWithUsersUseCase @Inject constructor(
             emit(Resource.Loading())
             val users = blogRepository.getUsers()
             val posts = blogRepository.getPosts()
-            emit(Resource.Success(createUsersWithPostsUseCase.invoke(users, posts)))
+            val usersWithPosts = createUsersWithPostsUseCase(users, posts)
+            emit(Resource.Success(usersWithPosts))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         } catch (e: IOException) {

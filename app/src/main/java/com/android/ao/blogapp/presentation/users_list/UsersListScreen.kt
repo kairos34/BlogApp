@@ -1,15 +1,12 @@
 package com.android.ao.blogapp.presentation.users_list
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.android.ao.blogapp.presentation.common.ErrorView
 import com.android.ao.blogapp.presentation.common.LoadingView
 import com.android.ao.blogapp.presentation.users_list.components.UserListItem
@@ -17,7 +14,7 @@ import com.android.ao.blogapp.presentation.users_list.components.UserListItem
 
 @Composable
 fun UsersListScreen(
-    viewModel: UsersListViewModel = hiltViewModel(),
+    viewModel: UsersListViewModel,
     navigateToUserDetail: (Int) -> Unit,
 ) {
     val usersListUIState by viewModel.usersListUIState.collectAsState()

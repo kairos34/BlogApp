@@ -26,8 +26,8 @@ fun UserListItem(
             .padding(
                 bottom = 5.dp,
                 top = 5.dp,
-                start = 20.dp,
-                end = 20.dp
+                start = 10.dp,
+                end = 10.dp
             )
     ) {
         Row(

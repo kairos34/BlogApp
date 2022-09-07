@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 fun ErrorView(
     message: String,
     tryButtonText: String = "Try again",
-    onClickRetry: () -> Unit
+    onClickRetry: (() -> Unit)? = null
 ) {
     Column(
         modifier = Modifier
@@ -33,8 +33,10 @@ fun ErrorView(
             style = MaterialTheme.typography.h6,
             color = Color.Red
         )
-        OutlinedButton(onClick = onClickRetry) {
-            Text(text = tryButtonText)
+        onClickRetry?.run {
+            OutlinedButton(onClick = onClickRetry) {
+                Text(text = tryButtonText)
+            }
         }
     }
 }

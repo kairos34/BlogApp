@@ -9,11 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.android.ao.blogapp.domain.model.UserWithPosts
+import com.android.ao.blogapp.util.ClickHelper
 
 @Composable
 fun UserListItem(
     userWithPosts: UserWithPosts,
-    onItemClick: () -> Unit
+    onItemClick: () -> Unit,
 ) {
     Card(
         shape = RoundedCornerShape(10.dp),
@@ -21,7 +22,11 @@ fun UserListItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                onItemClick()
+                ClickHelper
+                    .getInstance()
+                    .clickOnce {
+                        onItemClick()
+                    }
             }
             .padding(
                 bottom = 5.dp,
